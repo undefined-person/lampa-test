@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { IProduct } from 'modules/types'
+import { IProduct } from 'types'
 import { Button } from 'common'
 
 interface ProductProps {
