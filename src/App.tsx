@@ -1,5 +1,12 @@
+import { Header } from 'components'
+
 function App() {
-  return <div className="container mx-auto"></div>
+  return (
+    <>
+      <Header />
+      <main className="container mx-auto"></main>
+    </>
+  )
 }
 
 export default App
