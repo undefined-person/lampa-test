@@ -1,18 +1,19 @@
 import { useRoutes } from 'react-router-dom'
 
 import { Products, Cart } from 'modules'
+import { routes } from './routes'
 
 export const Router = () => {
-  let routes = useRoutes([
+  let router = useRoutes([
     {
-      path: '/products',
+      path: routes.products,
       element: <Products />,
     },
     {
-      path: '/cart',
+      path: routes.cart,
       element: <Cart />,
     },
   ])
 
-  return routes
+  return router
 }
