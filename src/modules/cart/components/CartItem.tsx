@@ -1,14 +1,18 @@
 import { FC } from 'react'
 
 import { Button } from 'common'
-import { IProduct } from 'types'
+import { ICartItem } from 'types'
+import { useProductsStore } from 'store'
 
 interface CartItemProps {
-  product: IProduct
+  cartItem: ICartItem
 }
 
-export const CartItem: FC<CartItemProps> = ({ product }) => {
-  const { id, title, description, price, image } = product
+export const CartItem: FC<CartItemProps> = ({ cartItem }) => {
+  const { id, title, description, price, image } = cartItem.product
+  const { increaseQuantity, decreaseQuantity } = useProductsStore(state => state.cart)
+  const { quantity } = cartItem
+
   return (
     <div className="flex justify-between shadow-md p-4">
       <div className="flex items-center gap-x-3">
@@ -20,9 +24,13 @@ export const CartItem: FC<CartItemProps> = ({ product }) => {
         </div>
       </div>
       <div className="flex items-center gap-x-2">
-        <Button className="py-2 px-3">-</Button>
-        <span>0</span>
-        <Button className="py-2 px-3">+</Button>
+        <Button className="py-2 px-3" onClick={() => decreaseQuantity(id)}>
+          -
+        </Button>
+        <span>{quantity}</span>
+        <Button className="py-2 px-3" onClick={() => increaseQuantity(id)}>
+          +
+        </Button>
       </div>
     </div>
   )
