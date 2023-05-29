@@ -1,10 +1,13 @@
 import { Header } from 'components'
+import { Router } from 'routes'
 
 function App() {
   return (
     <>
       <Header />
-      <main className="container mx-auto"></main>
+      <main className="container mx-auto">
+        <Router />
+      </main>
     </>
   )
 }
