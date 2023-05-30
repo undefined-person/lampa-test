@@ -6,7 +6,7 @@ import { useProductsStore } from 'store'
 import { ReactComponent as Cart } from 'assets/icons/cart.svg'
 
 export const Header = () => {
-  const totalQuantity = useProductsStore(state => state.cart.totalQuantity)
+  const totalPrice = useProductsStore(state => state.cart.totalPrice)
 
   return (
     <header className="bg-blue-900 py-6">
@@ -14,9 +14,9 @@ export const Header = () => {
         <Link to={routes.products} className="text-white font-medium text-2xl">
           Products
         </Link>
-        <Link to={routes.cart} className="relative">
+        <Link to={routes.cart} className="relative flex items-center justify-center gap-x-1">
           <Cart className="w-6 h-6 fill-white" />
-          {totalQuantity > 0 ? <span className="bg-blue-500 rounded-full h-4 flex items-center justify-center text-white w-4 text-xs absolute -top-1 -right-3">{totalQuantity}</span> : null}
+          {totalPrice > 0 ? <span className=" rounded-lg p-1 text-white text-xs ">{totalPrice}$</span> : null}
         </Link>
       </div>
     </header>
