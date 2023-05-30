@@ -1,3 +1,4 @@
+import { fetchProducts } from 'api/products'
 import { create } from 'zustand'
 
 import { IProduct, ICartItem } from 'types'
@@ -14,11 +15,16 @@ interface ICart {
 interface IProductsStore {
   products: IProduct[]
   cart: ICart
-  setProducts: (products: IProduct[]) => void
+  setProducts: () => Promise<IProduct[]>
 }
 
 export const useProductsStore = create<IProductsStore>(set => ({
   products: [],
+  setProducts: async () => {
+    const products = await fetchProducts()
+    set({ products })
+    return products
+  },
   cart: {
     cartItems: [],
     totalQuantity: 0,
@@ -92,8 +98,5 @@ export const useProductsStore = create<IProductsStore>(set => ({
         return state
       })
     },
-  },
-  setProducts: (products: IProduct[]) => {
-    set({ products })
   },
 }))
